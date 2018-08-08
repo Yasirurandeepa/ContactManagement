@@ -1,0 +1,53 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>User</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <button ion-button (click)="signUp()" item-left>Create User</button>
+  <button ion-button (click)="GetAllUsers()" item-left>Get Users List</button>
+
+  <ion-list>
+    <ion-searchbar (ionInput)="getUsers($event)" #searchBox></ion-searchbar>
+    <ion-item-sliding *ngFor="let item of ListUser">
+      <ion-item>
+        <ion-avatar item-start class="item-avatar">
+          <img src="{{item.path}}" (click)="selectImage(item.id)">
+        </ion-avatar>
+        <h2>{{item.name}} {{item.lastname}}</h2>
+        <p>{{item.identification}}</p>
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button color="primary">
+          <ion-icon name="text"></ion-icon>
+          Text
+        </button>
+
+        <button ion-button color="secondary">
+          <ion-icon name="call"></ion-icon>
+          Call
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right">
+        <!--<button ion-button color="primary">-->
+        <!--<ion-icon name="mail"></ion-icon>-->
+        <!--Email-->
+        <!--</button>-->
+        <button ion-button color="dark" (click)="editUser(item.id)">
+          <ion-icon name="flame"></ion-icon>
+          Edit
+        </button>
+        <button ion-button color="danger" (click)="deleteUser(item.id)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>
